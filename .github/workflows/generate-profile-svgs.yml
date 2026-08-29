@@ -1,0 +1,208 @@
+name: Generate Dynamic Profile SVGs
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-profile-svgs
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch GitHub data and generate SVGs
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_TOKEN }}
+          GH_LOGIN: ${{ github.repository_owner }}
+        run: |
+          mkdir -p assets
+          cat > generate.js <<'EOF'
+          const fs = require("fs");
+
+          const TOKEN = process.env.GH_TOKEN;
+          const LOGIN = process.env.GH_LOGIN;
+
+          if (!TOKEN) {
+            console.error("Missing PROFILE_TOKEN secret. See workflow comments for setup.");
+            process.exit(1);
+          }
+
+          const QUERY = `
+            query($login: String!) {
+              user(login: $login) {
+                contributionsCollection {
+                  contributionCalendar {
+                    totalContributions
+                    weeks {
+                      contributionDays {
+                        date
+                        contributionCount
+                      }
+                    }
+                  }
+                }
+                repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
+                  nodes {
+                    languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+                      edges {
+                        size
+                        node { name }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          `;
+
+          async function main() {
+            const res = await fetch("https://api.github.com/graphql", {
+              method: "POST",
+              headers: {
+                "Authorization": `bearer ${TOKEN}`,
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ query: QUERY, variables: { login: LOGIN } })
+            });
+
+            const json = await res.json();
+            if (json.errors) {
+              console.error(JSON.stringify(json.errors, null, 2));
+              process.exit(1);
+            }
+
+            const user = json.data.user;
+            const weeks = user.contributionsCollection.contributionCalendar.weeks;
+            const totalContributions = user.contributionsCollection.contributionCalendar.totalContributions;
+
+            const allDays = weeks.flatMap(w => w.contributionDays);
+            let maxStreak = 0, cur = 0;
+            for (const d of allDays) {
+              if (d.contributionCount > 0) { cur++; maxStreak = Math.max(maxStreak, cur); }
+              else cur = 0;
+            }
+            const activeDays = allDays.filter(d => d.contributionCount > 0).length;
+
+            function levelFor(count) {
+              if (count === 0) return 0;
+              if (count <= 3) return 1;
+              if (count <= 6) return 2;
+              return 3;
+            }
+
+            const langTotals = {};
+            for (const repo of user.repositories.nodes) {
+              for (const edge of repo.languages.edges) {
+                langTotals[edge.node.name] = (langTotals[edge.node.name] || 0) + edge.size;
+              }
+            }
+            const totalBytes = Object.values(langTotals).reduce((a, b) => a + b, 0);
+            const top5 = Object.entries(langTotals)
+              .sort((a, b) => b[1] - a[1])
+              .slice(0, 5)
+              .map(([name, size]) => ({ name, pct: totalBytes ? (size / totalBytes) * 100 : 0 }));
+
+            const CELL = 10, GAP = 3, STEP = CELL + GAP, MARGIN = 6;
+            const INTERVAL_MS = 11, SETTLE_MS = 233;
+            const COLORS = {
+              0: ["#3a0f0f", "0.22"],
+              1: ["#5c0a0a", "1"],
+              2: ["#b51212", "1"],
+              3: ["#ff3b3b", "1"]
+            };
+
+            const gridWidth = MARGIN * 2 + weeks.length * STEP - GAP;
+            const gridHeight = MARGIN * 2 + 7 * STEP - GAP;
+            const STATS_GAP = 20, STATS_HEIGHT = 42;
+            const totalWidth = gridWidth;
+            const totalHeight = gridHeight + STATS_GAP + STATS_HEIGHT;
+
+            let cellsMarkup = "";
+            weeks.forEach((week, colIndex) => {
+              week.contributionDays.forEach(day => {
+                const rowIndex = new Date(day.date + "T00:00:00Z").getUTCDay();
+                const lvl = levelFor(day.contributionCount);
+                const color = COLORS[lvl][0];
+                const op = COLORS[lvl][1];
+                const x = MARGIN + colIndex * STEP;
+                const y = MARGIN + rowIndex * STEP;
+                const delayMs = (colIndex * 7 + rowIndex) * INTERVAL_MS;
+                cellsMarkup += "<rect class=\"sq\" x=\"" + x + "\" y=\"" + y + "\" width=\"" + CELL + "\" height=\"" + CELL + "\" rx=\"2\" ry=\"2\" fill=\"" + color + "\" fill-opacity=\"" + op + "\" style=\"animation-delay:" + delayMs + "ms\"/>\n";
+              });
+            });
+
+            const cx1 = totalWidth * (1 / 6);
+            const cx2 = totalWidth * (3 / 6);
+            const cx3 = totalWidth * (5 / 6);
+            const labelY = gridHeight + 22;
+            const valueY = gridHeight + 42;
+
+            const svgLines = [];
+            svgLines.push("<svg viewBox=\"0 0 " + totalWidth + " " + totalHeight + "\" xmlns=\"http://www.w3.org/2000/svg\">");
+            svgLines.push("<style>");
+            svgLines.push(".sq{opacity:0;transform:translateY(-8px);animation-name:settle;animation-duration:" + SETTLE_MS + "ms;animation-timing-function:cubic-bezier(0.22,0.61,0.36,1);animation-fill-mode:forwards;}");
+            svgLines.push("@keyframes settle{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}");
+            svgLines.push("text{font-family:monospace;}");
+            svgLines.push(".stat-label{font-size:10px;fill:#c9c9c9;}");
+            svgLines.push(".stat-value{font-size:16px;fill:#ff3b3b;font-weight:bold;}");
+            svgLines.push("</style>");
+            svgLines.push(cellsMarkup);
+            svgLines.push("<text class=\"stat-label\" x=\"" + cx1.toFixed(1) + "\" y=\"" + labelY + "\" text-anchor=\"middle\">TOTAL CONTRIBUTIONS</text>");
+            svgLines.push("<text class=\"stat-value\" x=\"" + cx1.toFixed(1) + "\" y=\"" + valueY + "\" text-anchor=\"middle\">" + totalContributions.toLocaleString() + "</text>");
+            svgLines.push("<text class=\"stat-label\" x=\"" + cx2.toFixed(1) + "\" y=\"" + labelY + "\" text-anchor=\"middle\">MAX STREAK</text>");
+            svgLines.push("<text class=\"stat-value\" x=\"" + cx2.toFixed(1) + "\" y=\"" + valueY + "\" text-anchor=\"middle\">" + maxStreak + " DAYS</text>");
+            svgLines.push("<text class=\"stat-label\" x=\"" + cx3.toFixed(1) + "\" y=\"" + labelY + "\" text-anchor=\"middle\">ACTIVE DAYS</text>");
+            svgLines.push("<text class=\"stat-value\" x=\"" + cx3.toFixed(1) + "\" y=\"" + valueY + "\" text-anchor=\"middle\">" + activeDays + "</text>");
+            svgLines.push("</svg>");
+
+            fs.writeFileSync("assets/contributions.svg", svgLines.join("\n"));
+
+            const RANK_COLORS = ["#ff3b3b", "#e03434", "#b51212", "#8a1414", "#5c0a0a"];
+            const ROW_H = 38;
+            const langHeight = top5.length * ROW_H + 4;
+
+            const langLines = [];
+            langLines.push("<svg viewBox=\"0 0 500 " + langHeight + "\" xmlns=\"http://www.w3.org/2000/svg\">");
+            langLines.push("<style>text{font-family:monospace;}</style>");
+            top5.forEach((lang, i) => {
+              const color = RANK_COLORS[i];
+              const y = 22 + i * ROW_H;
+              const barY = y + 8;
+              const barH = i === top5.length - 1 ? 6 : 10;
+              const begin = (i * 0.15).toFixed(2);
+              const pctFraction = (lang.pct / 100).toFixed(4);
+              const pctLabel = lang.pct.toFixed(1) + "%";
+              langLines.push("<text x=\"0\" y=\"" + y + "\" font-size=\"13\" fill=\"" + color + "\">" + lang.name + "</text>");
+              langLines.push("<text x=\"470\" y=\"" + y + "\" font-size=\"13\" fill=\"" + color + "\" text-anchor=\"end\">" + pctLabel + "</text>");
+              langLines.push("<rect x=\"0\" y=\"" + barY + "\" width=\"470\" height=\"" + barH + "\" rx=\"3\" fill=\"" + color + "\" transform=\"scale(0,1)\">");
+              langLines.push("<animateTransform attributeName=\"transform\" type=\"scale\" from=\"0 1\" to=\"" + pctFraction + " 1\" dur=\"2.8s\" begin=\"" + begin + "s\" fill=\"freeze\" calcMode=\"spline\" keySplines=\"0.25 0.1 0.25 1\"/>");
+              langLines.push("</rect>");
+            });
+            langLines.push("</svg>");
+
+            fs.writeFileSync("assets/languages.svg", langLines.join("\n"));
+
+            console.log("Generated contributions.svg and languages.svg successfully.");
+          }
+
+          main().catch(err => { console.error(err); process.exit(1); });
+          EOF
+          node generate.js
+
+      - name: Commit generated SVGs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh contribution + language SVGs"
+          file_pattern: assets/contributions.svg assets/languages.svg

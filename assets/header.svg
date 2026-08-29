@@ -1,0 +1,92 @@
+<svg width="900" height="170" viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">MOHAMMED ZEESHAN</title>
+  <desc id="desc">Username text with a pixel flicker, break, and repair glitch effect.</desc>
+
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <clipPath id="userClip">
+      <text x="450" y="104" text-anchor="middle" font-family="JetBrains Mono, Fira Code, Consolas, monospace" font-size="54" font-weight="700" letter-spacing="2">MOHAMMED ZEESHAN</text>
+    </clipPath>
+  </defs>
+
+  <g font-family="JetBrains Mono, Fira Code, Consolas, monospace" fill="#ff4d4d" filter="url(#glow)">
+    <text x="450" y="104" text-anchor="middle" font-size="54" font-weight="700" letter-spacing="2" fill="#ff4d4d">MOHAMMED ZEESHAN</text>
+
+    <g clip-path="url(#userClip)" opacity="0.96">
+      <g fill="#ff8a8a">
+        <rect x="170" y="48" width="10" height="10">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 12 -8; 26 -18; 40 -28; 58 -42" dur="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="1.8s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="210" y="68" width="8" height="8">
+          <animateTransform attributeName="transform" type="translate" values="0 0; -8 12; 14 28; 36 46; 60 64" dur="2.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.4s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="258" y="40" width="12" height="12">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 18 -12; 40 -28; 62 -42; 84 -60" dur="2.1s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="305" y="72" width="9" height="9">
+          <animateTransform attributeName="transform" type="translate" values="0 0; -14 14; -30 32; -42 50; -64 72" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.6s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="350" y="46" width="12" height="12">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 16 -10; 36 -20; 56 -34; 82 -48" dur="1.9s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="1.9s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="420" y="60" width="10" height="10">
+          <animateTransform attributeName="transform" type="translate" values="0 0; -12 10; -28 20; -44 38; -70 58" dur="2.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="470" y="45" width="10" height="10">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 14 -18; 32 -34; 52 -52; 74 -72" dur="2.3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.3s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="520" y="74" width="9" height="9">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 18 8; 34 22; 56 38; 90 56" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="570" y="50" width="11" height="11">
+          <animateTransform attributeName="transform" type="translate" values="0 0; -18 -8; -36 -18; -54 -30; -90 -46" dur="2.0s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.0s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="630" y="66" width="10" height="10">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 16 10; 32 24; 62 40; 92 56" dur="2.7s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.7s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="680" y="44" width="10" height="10">
+          <animateTransform attributeName="transform" type="translate" values="0 0; -12 18; -26 34; -42 52; -72 70" dur="2.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0;0" dur="2.4s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+
+      <g fill="#ff5d5d">
+        <rect x="196" y="76" width="22" height="14">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 14 -8; 30 -18; 48 -28" dur="2.9s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;0.7;0;0" dur="2.9s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="342" y="80" width="18" height="12">
+          <animateTransform attributeName="transform" type="translate" values="0 0; -10 16; -24 32; -42 52" dur="3.1s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;0.8;0;0" dur="3.1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="492" y="82" width="22" height="12">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 18 12; 38 24; 60 44" dur="2.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;0.8;0;0" dur="2.8s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="646" y="78" width="22" height="14">
+          <animateTransform attributeName="transform" type="translate" values="0 0; -14 -10; -32 -24; -48 -36" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;0.8;0;0" dur="2.6s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+
+      <animate attributeName="opacity" values="1;0.9;1;0.75;1;0.96;1" dur="2.2s" repeatCount="indefinite"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+<svg viewBox="0 0 698 50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: monospace; }
+  </style>
+  <line x1="199" y1="10" x2="499" y2="10" stroke="#5c0a0a" stroke-width="1" opacity="0.5"/>
+  <text x="349" y="35" text-anchor="middle" font-size="12" fill="#c9c9c9">Thanks for visiting my profile</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg viewBox="0 0 698 260" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: monospace;
+      font-size: 14px;
+      fill: #24292f;
+    }
+
+    .accent {
+      fill: #cf222e;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      text {
+        fill: #f0f6fc;
+      }
+
+      .accent {
+        fill: #ff4d4d;
+      }
+    }
+  </style>
+
+  <!-- About -->
+  <text x="10" y="24">
+    <tspan x="10" dy="0">Computer Engineering student passionate about building practical</tspan>
+    <tspan x="10" dy="20">software, AI systems, and scalable applications.</tspan>
+  </text>
+
+  <text x="10" y="64">
+    <tspan x="10" dy="0">I enjoy understanding how things work under the hood and turning ideas</tspan>
+    <tspan x="10" dy="20">into real, usable products.</tspan>
+  </text>
+
+  <!-- SAFARA -->
+  <text x="10" y="104">
+    <tspan class="accent">SAFARA</tspan>
+    <tspan> — Tourist safety and emergency response platform with</tspan>
+    <tspan x="10" dy="20">SOS, geofencing, AI assistance, and real-time monitoring.</tspan>
+  </text>
+
+  <!-- SagaPulse -->
+  <text x="10" y="144">
+    <tspan class="accent">SagaPulse</tspan>
+    <tspan> — Distributed transaction orchestration simulator</tspan>
+    <tspan x="10" dy="20">focused on Sagas, workflows, and distributed systems.</tspan>
+  </text>
+
+  <!-- FinSight -->
+  <text x="10" y="184">
+    <tspan class="accent">FinSight</tspan>
+    <tspan> — AI-powered financial analysis platform designed to</tspan>
+    <tspan x="10" dy="20">turn financial data into meaningful insights.</tspan>
+  </text>
+
+  <!-- Currently -->
+  <text x="10" y="224">
+    <tspan>Currently learning and building around </tspan>
+    <tspan class="accent">AI/ML</tspan>
+    <tspan>, </tspan>
+    <tspan class="accent">Full-Stack Development</tspan>
+    <tspan>, </tspan>
+    <tspan x="10" dy="20">
+      <tspan class="accent">System Design</tspan>
+      <tspan>, and </tspan>
+      <tspan class="accent">Distributed Systems</tspan>
+      <tspan>.</tspan>
+    </tspan>
+  </text>
+</svg>
