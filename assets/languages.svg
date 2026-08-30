@@ -1,28 +1,28 @@
 <svg viewBox="0 0 500 194" xmlns="http://www.w3.org/2000/svg">
 <style>text{font-family:monospace;}</style>
 <text x="0" y="22" font-size="13" fill="#ff3b3b">TypeScript</text>
-<text x="470" y="22" font-size="13" fill="#ff3b3b" text-anchor="end">82.2%</text>
+<text x="470" y="22" font-size="13" fill="#ff3b3b" text-anchor="end">85.8%</text>
 <rect x="0" y="30" width="470" height="10" rx="3" fill="#ff3b3b" transform="scale(0,1)">
-<animateTransform attributeName="transform" type="scale" from="0 1" to="0.8225 1" dur="2.8s" begin="0.00s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="0.8578 1" dur="2.8s" begin="0.00s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
 </rect>
 <text x="0" y="60" font-size="13" fill="#e03434">CSS</text>
-<text x="470" y="60" font-size="13" fill="#e03434" text-anchor="end">6.1%</text>
+<text x="470" y="60" font-size="13" fill="#e03434" text-anchor="end">5.0%</text>
 <rect x="0" y="68" width="470" height="10" rx="3" fill="#e03434" transform="scale(0,1)">
-<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0615 1" dur="2.8s" begin="0.15s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0502 1" dur="2.8s" begin="0.15s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
 </rect>
 <text x="0" y="98" font-size="13" fill="#b51212">HTML</text>
-<text x="470" y="98" font-size="13" fill="#b51212" text-anchor="end">5.4%</text>
+<text x="470" y="98" font-size="13" fill="#b51212" text-anchor="end">4.3%</text>
 <rect x="0" y="106" width="470" height="10" rx="3" fill="#b51212" transform="scale(0,1)">
-<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0541 1" dur="2.8s" begin="0.30s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0429 1" dur="2.8s" begin="0.30s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
 </rect>
 <text x="0" y="136" font-size="13" fill="#8a1414">Python</text>
-<text x="470" y="136" font-size="13" fill="#8a1414" text-anchor="end">3.4%</text>
+<text x="470" y="136" font-size="13" fill="#8a1414" text-anchor="end">2.6%</text>
 <rect x="0" y="144" width="470" height="10" rx="3" fill="#8a1414" transform="scale(0,1)">
-<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0337 1" dur="2.8s" begin="0.45s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0265 1" dur="2.8s" begin="0.45s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
 </rect>
 <text x="0" y="174" font-size="13" fill="#5c0a0a">JavaScript</text>
-<text x="470" y="174" font-size="13" fill="#5c0a0a" text-anchor="end">2.1%</text>
+<text x="470" y="174" font-size="13" fill="#5c0a0a" text-anchor="end">1.7%</text>
 <rect x="0" y="182" width="470" height="6" rx="3" fill="#5c0a0a" transform="scale(0,1)">
-<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0213 1" dur="2.8s" begin="0.60s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="0.0170 1" dur="2.8s" begin="0.60s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
 </rect>
 </svg>
