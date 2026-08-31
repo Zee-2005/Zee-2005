@@ -249,7 +249,7 @@ text{font-family:monospace;}
 <rect class="sq" x="448" y="32" width="10" height="10" rx="2" ry="2" fill="#3a0f0f" fill-opacity="0.22" style="animation-delay:2640ms"/>
 <rect class="sq" x="448" y="45" width="10" height="10" rx="2" ry="2" fill="#3a0f0f" fill-opacity="0.22" style="animation-delay:2651ms"/>
 <rect class="sq" x="448" y="58" width="10" height="10" rx="2" ry="2" fill="#3a0f0f" fill-opacity="0.22" style="animation-delay:2662ms"/>
-<rect class="sq" x="448" y="71" width="10" height="10" rx="2" ry="2" fill="#3a0f0f" fill-opacity="0.22" style="animation-delay:2673ms"/>
+<rect class="sq" x="448" y="71" width="10" height="10" rx="2" ry="2" fill="#5c0a0a" fill-opacity="1" style="animation-delay:2673ms"/>
 <rect class="sq" x="448" y="84" width="10" height="10" rx="2" ry="2" fill="#3a0f0f" fill-opacity="0.22" style="animation-delay:2684ms"/>
 <rect class="sq" x="461" y="6" width="10" height="10" rx="2" ry="2" fill="#3a0f0f" fill-opacity="0.22" style="animation-delay:2695ms"/>
 <rect class="sq" x="461" y="19" width="10" height="10" rx="2" ry="2" fill="#3a0f0f" fill-opacity="0.22" style="animation-delay:2706ms"/>
@@ -370,12 +370,13 @@ text{font-family:monospace;}
 <rect class="sq" x="669" y="58" width="10" height="10" rx="2" ry="2" fill="#ff3b3b" fill-opacity="1" style="animation-delay:3971ms"/>
 <rect class="sq" x="669" y="71" width="10" height="10" rx="2" ry="2" fill="#ff3b3b" fill-opacity="1" style="animation-delay:3982ms"/>
 <rect class="sq" x="669" y="84" width="10" height="10" rx="2" ry="2" fill="#ff3b3b" fill-opacity="1" style="animation-delay:3993ms"/>
-<rect class="sq" x="682" y="6" width="10" height="10" rx="2" ry="2" fill="#5c0a0a" fill-opacity="1" style="animation-delay:4004ms"/>
+<rect class="sq" x="682" y="6" width="10" height="10" rx="2" ry="2" fill="#b51212" fill-opacity="1" style="animation-delay:4004ms"/>
+<rect class="sq" x="682" y="19" width="10" height="10" rx="2" ry="2" fill="#5c0a0a" fill-opacity="1" style="animation-delay:4015ms"/>
 
 <text class="stat-label" x="116.3" y="122" text-anchor="middle">TOTAL CONTRIBUTIONS</text>
-<text class="stat-value" x="116.3" y="142" text-anchor="middle">202</text>
+<text class="stat-value" x="116.3" y="142" text-anchor="middle">210</text>
 <text class="stat-label" x="349.0" y="122" text-anchor="middle">MAX STREAK</text>
 <text class="stat-value" x="349.0" y="142" text-anchor="middle">11 DAYS</text>
 <text class="stat-label" x="581.7" y="122" text-anchor="middle">ACTIVE DAYS</text>
-<text class="stat-value" x="581.7" y="142" text-anchor="middle">52</text>
+<text class="stat-value" x="581.7" y="142" text-anchor="middle">54</text>
 </svg>
