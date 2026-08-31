@@ -2,7 +2,8 @@ name: Generate Dynamic Profile SVGs
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "0 0 * * 1"
+    #- cron: "0 */12 * * *"
   workflow_dispatch:
 
 permissions:
